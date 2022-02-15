@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>메인페이지</title>
+    <style>
+      a {
+        text-decoration: none;
+      }
+
+      .Main_Wrap {
+        margin: 0;
+        padding: 0;
+      }
+      .head {
+        color: red;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .head .menu1 {
+        color: brown;
+      }
+      .head .menu2 {
+        color: chocolate;
+      }
+      .head .menu3 {
+        color: darkgray;
+        margin-left: 2em;
+      }
+      .contents {
+        color: blue;
+      }
+      .footer {
+        color: yellow;
+      }
+    </style>
+</head>
+<body>
+<h1>메인페이지</h1>
+
+<div class="Main_Wrap">
+    <div class="head">
+        <div class="menu1"></div>
+        <div class="menu2"><a href="/signup">회원가입</a></div>
+        <div class="menu3"><a href="/signin">로그인</a></div>
+    </div>
+    <div class="contents">내용부분</div>
+    <div class="footer">footer 부분</div>
+</div>
+</body>
+</html>

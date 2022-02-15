@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>회원가입</title>
+
+    <style>
+      .signup_wrap {
+        padding: 0px;
+        margin: 0px;
+      }
+
+      .menu div {
+        width: 7em;
+      }
+    </style>
+</head>
+<body>
+<div class="signup_wrap">
+    <div>회원가입</div>
+
+    <form action="/signupaction">
+        <div class="menu">
+            <div>아이디:</div>
+            <input type="text" />
+        </div>
+
+        <div class="menu">
+            <div>비밀번호:</div>
+            <input type="password" />
+        </div>
+
+        <div class="menu">
+            <div>비밀번호 확인:</div>
+            <input type="password" />
+        </div>
+
+        <div class="menu">
+            <div>이름:</div>
+            <input type="text" />
+        </div>
+
+        <div class="menu">
+            <div>핸드폰번호:</div>
+            <input type="text" />
+        </div>
+        <div class="menu">
+            <div>생년월일:</div>
+            <input type="date" />
+        </div>
+        <div class="menu">
+            <div>성별:</div>
+            <input type="radio" name="sex" value="html" checked /> 남
+            <input type="radio" name="sex" /> 여
+        </div>
+
+        <div class="menu">
+            <div>이메일:</div>
+            <input type="email" />
+        </div>
+
+        <div class="menu">
+            <div>주소:</div>
+            <input type="text" style="width: 500px" />
+        </div>
+        <br />
+        <div>
+            <input type="submit" value="회원가입" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
