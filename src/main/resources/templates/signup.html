@@ -14,60 +14,230 @@
         width: 7em;
       }
     </style>
+
+    <script>
+      window.onload = function () {
+        document.querySelector("#signupform").onsubmit = function () {
+          //https://velog.io/@chloeee/getElementById-%EA%B7%B8%EB%A6%AC%EA%B3%A0-querySelector-%EC%B0%A8%EC%9D%B4%EC%A0%90
+          // querySelectror 와 gegelementById 차이점 == 거의 같지만 구체적이냐 아니냐의 차이점 getElementByID 가 더 빠르고 많이 사용된다.
+          var userid = document.getElementById("userid");
+          var pwd = document.getElementById("pwd");
+          var checkpwd = document.getElementById("checkpwd");
+          var name = document.getElementById("name");
+          var phonenumber = document.getElementById("phonenumber");
+          var birthday = document.getElementById("birthday");
+          var email = document.getElementById("email");
+          var address = document.getElementById("address");
+          // 유효성 검사 1: 공백이 없어야 한다.
+          if (userid.value.trim().length < 1) {
+            alert("id는 필수 항목입니다.");
+            userid.value = "";
+            userid.focus(); //커서를 userid로 이동시키는 함수
+            return false;
+          }
+          if (pwd.value.trim() < 1) {
+            alert("비밀번호는 필수항목입니다.");
+            pwd.value = "";
+            pwd.focus();
+            return false;
+          }
+          // pw == pwcheck 이어야 한다.
+          if (pwcheck.value.trim() < 1 || pw.value != pwcheck.value) {
+            alert("비밀번호 확인이 일치하지 않습니다.");
+            pwcheck.value = "";
+            pwcheck.focus();
+            return false;
+          }
+          if (name.value.trim() < 1) {
+            alert("이름 항목은 필수항목입니다.");
+            name.value = "";
+            name.focus();
+            return false;
+          }
+
+          if (phonenumber.value.trim() < 1) {
+            alert("전화번호 항목은 필수항목입니다.");
+            phonenumber.value = "";
+            phonenumber.focus();
+            return false;
+          }
+
+          if (birthday.value.trim() < 1) {
+            alert("생일 항목을 입력해주세요.");
+            birthday.value = "";
+            birthday.focus();
+            return false;
+          }
+          if (email.value.trim() < 1) {
+            alert(" 이메일 항목은 필수항목입니다.");
+            email.value = "";
+            email.focus();
+            return false;
+          }
+          if (address.value.trim() < 1) {
+            alert(" 주소 항목을 입력해주세요.");
+            address.value = "";
+            address.focus();
+            return false;
+          }
+        };
+      };
+    </script>
 </head>
 <body>
 <div class="signup_wrap">
     <div>회원가입</div>
 
-    <form action="/signupaction">
+    <form id="signupform" action="/signupaction">
         <div class="menu">
             <div>아이디:</div>
-            <input type="text" />
+            <input type="text" name="userid" id="userid" />
+            <button type="button" onclick="id_check();">중복확인</button>
+            <!-- 사용할라면 ajax로 db 값 가져와서 비교 자바스크립트( 여기서 안할꺼면 컨트롤러 단에서 해도됨)-->
         </div>
 
         <div class="menu">
             <div>비밀번호:</div>
-            <input type="password" />
+            <input
+                    type="password"
+                    name="pwd"
+                    id="pwd"
+                    placeholder="영문자+숫자+특수문자"
+            />
         </div>
 
         <div class="menu">
             <div>비밀번호 확인:</div>
-            <input type="password" />
+            <input type="password" name="checkpwd" id="checkpwd" />
+            <!--name form 태그로 넘겨줄때 사용 id 자바스크립트단에서 쓸려고 사용 값-->
         </div>
 
         <div class="menu">
             <div>이름:</div>
-            <input type="text" />
+            <input type="text" name="name" id="name" />
         </div>
 
         <div class="menu">
             <div>핸드폰번호:</div>
-            <input type="text" />
+            <input type="text" name="phonenumber" id="phonenumber" />
         </div>
         <div class="menu">
             <div>생년월일:</div>
-            <input type="date" />
+            <input type="date" name="birthday" id="birthday" />
         </div>
         <div class="menu">
             <div>성별:</div>
-            <input type="radio" name="sex" value="html" checked /> 남
-            <input type="radio" name="sex" /> 여
+            <input
+                    type="radio"
+                    value="M"
+                    name="gender"
+                    id="male"
+                    checked
+            />
+            남
+            <!--name 안에 value 값 들어있음-->
+            <input type="radio"  value="F" name="gender" id="female" />
+            여
         </div>
 
         <div class="menu">
             <div>이메일:</div>
-            <input type="email" />
+            <input type="text" name="email" id="email" />@
+            <select>
+                <option value="">직접입력</option>
+                <option value="naver.com">naver</option>
+                <option value="gamil.com">gmail</option>
+                <option value="daum.com">daum</option>
+                <option value="nate.com">nate</option>
+            </select>
         </div>
 
         <div class="menu">
             <div>주소:</div>
-            <input type="text" style="width: 500px" />
+
+            <input type="text" id="sample6_postcode" placeholder="우편번호" />
+
+            <input
+                    type="button"
+                    onclick="sample6_execDaumPostcode()"
+                    value="우편번호 찾기"
+            />
+
+            <br />
+
+            <input type="text" id="sample6_address" placeholder="주소" />
+            <br />
+
+            <input
+                    type="text"
+                    id="sample6_detailAddress"
+                    placeholder="상세주소"
+            />
+
+            <input type="text" id="sample6_extraAddress" placeholder="참고항목" />
         </div>
+
         <br />
+
         <div>
             <input type="submit" value="회원가입" />
         </div>
     </form>
 </div>
 </body>
+
+<!-- https://postcode.map.daum.net/guide 우편번호 사용하기  -->
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function (data) {
+          // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+          // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+          // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+          var addr = ""; // 주소 변수
+          var extraAddr = ""; // 참고항목 변수
+
+          //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+          if (data.userSelectedType === "R") {
+            // 사용자가 도로명 주소를 선택했을 경우
+            addr = data.roadAddress;
+          } else {
+            // 사용자가 지번 주소를 선택했을 경우(J)
+            addr = data.jibunAddress;
+          }
+
+          // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+          if (data.userSelectedType === "R") {
+            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+            if (data.bname !== "" && /[동|로|가]$/g.test(data.bname)) {
+              extraAddr += data.bname;
+            }
+            // 건물명이 있고, 공동주택일 경우 추가한다.
+            if (data.buildingName !== "" && data.apartment === "Y") {
+              extraAddr +=
+                extraAddr !== "" ? ", " + data.buildingName : data.buildingName;
+            }
+            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+            if (extraAddr !== "") {
+              extraAddr = " (" + extraAddr + ")";
+            }
+            // 조합된 참고항목을 해당 필드에 넣는다.
+            document.getElementById("sample6_extraAddress").value = extraAddr;
+          } else {
+            document.getElementById("sample6_extraAddress").value = "";
+          }
+
+          // 우편번호와 주소 정보를 해당 필드에 넣는다.
+          document.getElementById("sample6_postcode").value = data.zonecode;
+          document.getElementById("sample6_address").value = addr;
+          // 커서를 상세주소 필드로 이동한다.
+          document.getElementById("sample6_detailAddress").focus();
+        },
+      }).open();
+    }
+  </script>
 </html>
