@@ -1,4 +1,4 @@
-package donsin.homepage;
+package dongsin.homepage;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
